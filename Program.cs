@@ -1,22 +1,55 @@
-﻿using Cards2;
+﻿using System;
+using Cards2;
 
-// Exercise 1
+// loop while there's more input
+string input = Console.ReadLine();
+
+// Add your code between this comment
+// and the comment below. You can of
+// course add more space between the
+// comments as needed
+
+// declare a deck variables and create a deck object
+// DON'T SHUFFLE THE DECK
 Deck deck = new Deck();
-deck.Shuffle();
 
-Card top = deck.TakeTopCard();
-Console.WriteLine($"{top.Rank} of {top.Suit}");
+// deal 2 cards each to 4 players (deal properly, dealing
+// the first card to each player before dealing the
+// second card to each player)
+Card[] player1 = new Card[2];
+Card[] player2 = new Card[3];
+Card[] player3 = new Card[3];
+Card[] player4 = new Card[2];
 
-deck.Print();
-Console.Write("\n\n");
-
-// Exercise 2
-int evens = 0;
-for (int i = 0; i < 5; i++) {
-    top = deck.TakeTopCard();
-    Console.WriteLine((int)top.Rank + 1);
-    if (((int)top.Rank + 1) % 2 == 0) evens++;
+for (int i = 0; i < 2; i++) {
+    player1[i] = deck.TakeTopCard();
+    player2[i] = deck.TakeTopCard();
+    player3[i] = deck.TakeTopCard();
+    player4[i] = deck.TakeTopCard();
 }
 
-Console.WriteLine($"Even Cards: {evens}");
-Console.WriteLine($"Odd Cards: {5 - evens}");
+// deal 1 more card to players 2 and 3
+player2[2] = deck.TakeTopCard();
+player3[2] = deck.TakeTopCard();
+
+// flip all the cards over
+foreach (Card card in player1) card.FlipOver();
+foreach (Card card in player2) card.FlipOver();
+foreach (Card card in player3) card.FlipOver();
+foreach (Card card in player4) card.FlipOver();
+
+// print the cards for player 1
+Console.WriteLine("Player 1:");
+foreach (Card card in player1) Console.WriteLine($"- {card.Rank} of {card.Suit}");
+
+// print the cards for player 2
+Console.WriteLine("Player 2:");
+foreach (Card card in player2) Console.WriteLine($"- {card.Rank} of {card.Suit}");
+
+// print the cards for player 3
+Console.WriteLine("Player 3:");
+foreach (Card card in player3) Console.WriteLine($"- {card.Rank} of {card.Suit}");
+
+// print the cards for player 4
+Console.WriteLine("Player 4:");
+foreach (Card card in player4) Console.WriteLine($"- {card.Rank} of {card.Suit}");
